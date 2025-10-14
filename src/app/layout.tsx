@@ -1,26 +1,29 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import NavBar from "@/components/NavBar";
+import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Arnav Bhatia — Portfolio",
-  description: "CS @ ASU. I build clean, fast web apps and ML features.",
+  title: "Arnav Bhatia",
+  description: "CS @ ASU — I build fast, clean web apps and practical ML features.",
   openGraph: {
-    title: "Arnav Bhatia — Portfolio",
-    description: "CS @ ASU. I build clean, fast web apps and ML features."
+    title: "Arnav Bhatia",
+    description: "Portfolio and projects of Arnav Bhatia, Computer Science @ ASU",
+    images: ["/og.png"],
+    url: "https://arnav-portfolio.vercel.app",
+    siteName: "Arnav Bhatia",
   },
-  metadataBase: new URL("https://example.com")
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
-        <NavBar />
-        <main className="max-w-4xl mx-auto px-4 py-10">{children}</main>
+        {children}
         <footer className="max-w-4xl mx-auto px-4 py-10 text-sm text-gray-500">
           © {new Date().getFullYear()} Arnav Bhatia
         </footer>
+        <Analytics />
       </body>
     </html>
   );
