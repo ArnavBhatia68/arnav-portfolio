@@ -6,27 +6,27 @@ export default function AboutPage() {
       {/* ABOUT SECTION (added) */}
       <h2>About</h2>
       <p>
-        I'm a CS student at Arizona State University who enjoys building fast, clean web apps
+        I&#39;m a CS student at Arizona State University who enjoys building fast, clean web apps
         and practical ML features. I care about clear UX, performance, and shipping things people
         actually use.
       </p>
       <p>
-        Right now I'm focused on Next.js + TypeScript on the frontend and Python/scikit-learn
-        for ML baselines, with Postgres for data work. I also enjoy mentoring—helping peers
+        Right now I&#39;m focused on Next.js + TypeScript on the frontend and Python/scikit-learn
+        for ML baselines, with Postgres for data work. I also enjoy mentoring&mdash;helping peers
         debug, think clearly, and level up their fundamentals.
       </p>
       <p>
-        I'm open to SWE/ML internships and collaborations.
+        I&#39;m open to SWE/ML internships and collaborations.
       </p>
 
       {/* EDUCATION FIRST */}
       <h2>Education</h2>
       <p>
-        <strong>Arizona State University</strong> — B.S. Computer Science ('26)
+        <strong>Arizona State University</strong> — B.S. Computer Science (&#39;26)
         <br />
         <strong>GPA:</strong> 4.0 · <strong>Scholarship:</strong> New American University Scholarship
         <br />
-        <a className="underline" href="/awards/deans-list">Dean's List certificates</a>
+        <a className="underline" href="/awards/deans-list">Dean&#39;s List certificates</a>
       </p>
 
       {/* PROJECTS */}
@@ -70,13 +70,12 @@ export default function AboutPage() {
       {/* LINKS */}
       <p>
         <a
-  className="underline"
-  href="/Resume-%20Arnav%20Bhatia_CS.pdf"   // match your real file in /public
-  download="Arnav_Bhatia_Resume.pdf"        // suggested filename for the save dialog
->
-  Download my resume
-</a>
-
+          className="underline"
+          href="/Resume-%20Arnav%20Bhatia_CS.pdf"
+          download="Arnav_Bhatia_Resume.pdf"
+        >
+          Download my resume
+        </a>
         {" · "}
         <a className="underline" href="/contact">Contact</a>
       </p>
