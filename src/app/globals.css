@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg: #ffffff;
-  --fg: #111827; /* gray-900 */
+html {
+  scroll-behavior: smooth;
 }
 
-html, body {
-  background: var(--bg);
-  color: var(--fg);
+::selection {
+  background: #38bdf8;
+  color: #0f172a;
 }
