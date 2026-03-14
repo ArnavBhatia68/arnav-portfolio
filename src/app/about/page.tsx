@@ -1,84 +1,75 @@
+import type { Metadata } from "next";
+import SectionHeader from "@/components/SectionHeader";
+import { aboutNarrative, coursework, education, honors } from "@/data/profile";
+import { skills } from "@/data/skills";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "About Arnav Bhatia: software engineering, research, and teaching focus.",
+};
+
 export default function AboutPage() {
   return (
-    <article className="prose">
-      <h1>About Arnav</h1>
+    <div className="space-y-12">
+      <section>
+        <SectionHeader eyebrow="About" title="Engineering-first mindset with research depth" />
+        <p className="max-w-4xl leading-8 text-slate-600 dark:text-slate-300">{aboutNarrative}</p>
+      </section>
 
-      {/* ABOUT SECTION (added) */}
-      <h2>About</h2>
-      <p>
-        I&#39;m a CS student at Arizona State University who enjoys building fast, clean web apps
-        and practical ML features. I care about clear UX, performance, and shipping things people
-        actually use.
-      </p>
-      <p>
-        Right now I&#39;m focused on Next.js + TypeScript on the frontend and Python/scikit-learn
-        for ML baselines, with Postgres for data work. I also enjoy mentoring&mdash;helping peers
-        debug, think clearly, and level up their fundamentals.
-      </p>
-      <p>
-        I&#39;m open to SWE/ML internships and collaborations.
-      </p>
+      <section className="grid gap-6 lg:grid-cols-3">
+        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:col-span-2">
+          <h3 className="text-xl font-semibold">Education</h3>
+          <p className="mt-3 text-slate-700 dark:text-slate-200">{education.school}</p>
+          <p className="text-slate-600 dark:text-slate-300">{education.degree}</p>
+          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{education.dates} · {education.location}</p>
+          <p className="mt-2 text-sm font-semibold text-sky-700 dark:text-sky-300">GPA: {education.gpa}</p>
+        </article>
 
-      {/* EDUCATION FIRST */}
-      <h2>Education</h2>
-      <p>
-        <strong>Arizona State University</strong> — B.S. Computer Science (&#39;26)
-        <br />
-        <strong>GPA:</strong> 4.0 · <strong>Scholarship:</strong> New American University Scholarship
-        <br />
-        <a className="underline" href="/awards/deans-list">Dean&#39;s List certificates</a>
-      </p>
+        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <h3 className="text-xl font-semibold">Honors</h3>
+          <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            {honors.map((honor) => (
+              <li key={honor}>• {honor}</li>
+            ))}
+          </ul>
+        </article>
+      </section>
 
-      {/* PROJECTS */}
-      <h2>Selected Projects</h2>
-      <ul>
-        <li><a href="/projects/apmac-mvp">APMAC — AI Productivity MVP</a> — Result screen, API integration, Vercel deploy; shipped a usable prototype.</li>
-        <li><a href="/projects/instruction-tuned-ai-assistant">Instruction-Tuned AI Assistant</a> — LoRA-tuned LLM + FastAPI inference with safety refusals.</li>
-        <li><a href="/projects/role-based-academic-portal">Role-Based Academic Help Portal</a> — Multi-role app with secure auth, encrypted data, search/filter, backups.</li>
-        <li><a href="/projects/sentiment-analysis-tool">Sentiment Analysis Tool</a> — Flask + scikit-learn for text and CSV batch sentiment with evaluation.</li>
-      </ul>
+      <section>
+        <SectionHeader title="Relevant Coursework" />
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {coursework.map((course) => (
+            <div key={course} className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+              {course}
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {/* SKILLS */}
-      <h2>Skills</h2>
-      <ul>
-        <li><strong>Languages:</strong> TypeScript, Python, Java, C++, SQL</li>
-        <li><strong>Web & Technologies:</strong> Next.js, React, Tailwind, Node, FastAPI, Flask, Postgres, Vercel, Docker (basics)</li>
-        <li><strong>Data/ML:</strong> scikit-learn, pandas, Postgres, basic ML pipelines</li>
-        <li><strong>Computer Science:</strong> Data Structures & Algorithms, OOP, Git</li>
-      </ul>
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <h3 className="text-xl font-semibold">Teaching, Research, and Leadership</h3>
+        <p className="mt-3 text-slate-600 dark:text-slate-300">
+          My growth as an engineer has come from balancing production-style builds, experimental research, and student mentorship at scale. Teaching sharpened technical communication, research improved systems thinking under uncertainty, and leadership roles helped me operate with accountability across diverse teams.
+        </p>
+      </section>
 
-      {/* MENTORING + LEADERSHIP */}
-      <h2>Mentoring & Leadership</h2>
-      <ul>
-        <li>
-          <strong>Teaching Assistant (Computer Science) — ASU</strong> · <em>Aug 2023 – Present</em>
-          <br />
-          Co-designed exploratory modules and hosted online + in-person office hours for a class of <strong>50+ undergrads</strong>.
-        </li>
-        <li>
-          <strong>Supervisor — Joaquin Bustoz Math Science Honors Program</strong> · <em>May 2024 & 2025</em>
-          <br />
-          Supervised a team of <strong>5 tutors</strong> delivering PreCalculus to <strong>24 high-school students</strong> from historically underrepresented communities; implemented tailored strategies that improved engagement and learning outcomes.
-        </li>
-        <li>
-          <strong>Instructional Aide / Grader (Mathematics) — ASU</strong> · <em>Aug 2023 – Present</em>
-          <br />
-          Supported a large lecture, engaging with <strong>240+ students</strong> in class and via discussion boards; assisted with homework and quiz grading to create an inclusive learning environment.
-        </li>
-      </ul>
-
-      {/* LINKS */}
-      <p>
-        <a
-          className="underline"
-          href="/Resume-%20Arnav%20Bhatia_CS.pdf"
-          download="Arnav_Bhatia_Resume.pdf"
-        >
-          Download my resume
-        </a>
-        {" · "}
-        <a className="underline" href="/contact">Contact</a>
-      </p>
-    </article>
+      <section>
+        <SectionHeader title="Skills" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {Object.entries(skills).map(([group, values]) => (
+            <article key={group} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{group}</h4>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {values.map((skill) => (
+                  <span key={skill} className="rounded-full border border-slate-200 px-3 py-1 text-xs dark:border-slate-700">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
