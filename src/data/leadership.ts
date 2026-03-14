@@ -55,7 +55,7 @@ export const leadershipItems: LeadershipItem[] = [
       "Participated in tree plantation initiatives through Rotary Club of Ambala.",
       "Created awareness against the harms caused by single-use plastic.",
     ],
-    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: undefined }],
+    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: "/docs/letters/rotary-appreciation.pdf" }],
   },
   {
     id: "kadam-foundation",
@@ -64,6 +64,6 @@ export const leadershipItems: LeadershipItem[] = [
     dates: "Jan 2021 - Nov 2021",
     summary: "Supported food and ration drives for below-poverty-line communities.",
     bullets: ["Participated in food and ration drives for below-poverty-line populations."],
-    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: undefined }],
+    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: "/docs/letters/kadam-appreciation.pdf" }],
   },
 ];

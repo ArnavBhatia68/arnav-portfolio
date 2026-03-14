@@ -30,10 +30,15 @@ export default function LeadershipPage() {
             ))}
           </ul>
 
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            <ReferenceBlock label={item.referenceLabel} name={item.referenceName} email={item.referenceEmail} />
-            <SupportingDocumentsBlock docs={item.supportingDocuments} />
-          </div>
+          {(() => {
+            const hasLetter = Boolean(item.supportingDocuments?.some((doc) => doc.fileUrl));
+            return (
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                {!hasLetter ? <ReferenceBlock label={item.referenceLabel} name={item.referenceName} email={item.referenceEmail} /> : null}
+                <SupportingDocumentsBlock docs={item.supportingDocuments} />
+              </div>
+            );
+          })()}
         </article>
       ))}
     </div>

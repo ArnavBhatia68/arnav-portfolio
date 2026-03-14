@@ -33,10 +33,15 @@ export default function ExperienceSnapshot({ items }: { items: ExperienceItem[] 
                 <li key={bullet}>{bullet}</li>
               ))}
             </ul>
-            <div className="mt-4 grid gap-3 md:grid-cols-2">
-              <ReferenceBlock label={active.referenceLabel} name={active.referenceName} email={active.referenceEmail} />
-              <SupportingDocumentsBlock docs={active.supportingDocuments} />
-            </div>
+            {(() => {
+              const hasLetter = Boolean(active.supportingDocuments?.some((doc) => doc.fileUrl));
+              return (
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
+                  {!hasLetter ? <ReferenceBlock label={active.referenceLabel} name={active.referenceName} email={active.referenceEmail} /> : null}
+                  <SupportingDocumentsBlock docs={active.supportingDocuments} />
+                </div>
+              );
+            })()}
           </div>
         </div>
       ) : null}

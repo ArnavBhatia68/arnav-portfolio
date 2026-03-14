@@ -36,7 +36,7 @@ export const experiences: ExperienceItem[] = [
     referenceLabel: "Point of Contact",
     referenceName: "Available upon request",
     referenceEmail: "reference-coming-soon@example.com",
-    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: undefined }],
+    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: "/docs/letters/miran-appreciation.pdf" }],
   },
   {
     id: "iris-lab",
@@ -133,6 +133,6 @@ export const experiences: ExperienceItem[] = [
     referenceLabel: "Point of Contact",
     referenceName: "Available upon request",
     referenceEmail: "reference-coming-soon@example.com",
-    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: undefined }],
+    supportingDocuments: [{ label: "Letter of Appreciation", fileUrl: "/docs/letters/sas-appreciation.pdf" }],
   },
 ];

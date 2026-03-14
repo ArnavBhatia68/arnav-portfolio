@@ -10,8 +10,8 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/bhatiaarnav/",
   leetcode: "",
   twitter: "",
-  resumePath: "/TODO-resume.pdf",
-  transcriptPath: "/TODO-transcript.pdf",
+  resumePath: "/docs/resume/ArnavBhatia_CSResume_13.pdf",
+  transcriptPath: "/docs/transcript/ArnavBhatia_Transcript.pdf",
   profilePhoto: "/TODO-profile-photo.jpg",
   opportunityCta: "Open to SWE / ML / research roles",
 } as const;
