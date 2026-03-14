@@ -46,12 +46,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="text-xl font-semibold">Teaching, Research, and Leadership</h3>
-        <p className="mt-3 text-slate-600 dark:text-slate-300">
-          My growth as an engineer has come from balancing production-style builds, experimental research, and student mentorship at scale. Teaching sharpened technical communication, research improved systems thinking under uncertainty, and leadership roles helped me operate with accountability across diverse teams.
-        </p>
-      </section>
 
       <section>
         <SectionHeader title="Skills" />

@@ -26,6 +26,7 @@ export default function HomePage() {
         <p className="mt-2 text-lg font-medium text-slate-700 dark:text-slate-200">{profile.headline}</p>
         <p className="mt-4 max-w-3xl text-slate-600 dark:text-slate-300">{profile.intro}</p>
         <div className="mt-6 flex flex-wrap gap-3">
+          <CTAButton href="/about" variant="secondary">About</CTAButton>
           <CTAButton href="/resume">View Resume</CTAButton>
           <CTAButton href="/resume" variant="secondary">View Transcript</CTAButton>
           <CTAButton href="/contact" variant="secondary">Contact Me</CTAButton>
