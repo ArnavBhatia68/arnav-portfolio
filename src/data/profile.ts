@@ -8,10 +8,11 @@ export const profile = {
   phone: "+1 480 764 7520",
   github: "https://github.com/ArnavBhatia68/",
   linkedin: "https://www.linkedin.com/in/bhatiaarnav/",
-  leetcode: "TODO: add LeetCode URL",
-  twitter: "TODO: add Twitter/X URL",
-  resumePath: "/TODO-resume.pdf", // TODO: replace with final resume asset path
-  profilePhoto: "/TODO-profile-photo.jpg", // TODO: replace with profile photo
+  leetcode: "",
+  twitter: "",
+  resumePath: "/TODO-resume.pdf",
+  transcriptPath: "/TODO-transcript.pdf",
+  profilePhoto: "/TODO-profile-photo.jpg",
   opportunityCta: "Open to SWE / ML / research roles",
 } as const;
 

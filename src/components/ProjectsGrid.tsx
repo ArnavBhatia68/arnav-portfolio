@@ -3,11 +3,13 @@
 import { useMemo, useState } from "react";
 import type { Project, ProjectCategory } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
+import ProjectDetailModal from "./ProjectDetailModal";
 
 const filters: Array<ProjectCategory | "All"> = ["All", "Full-Stack", "AI/ML", "Research"];
 
 export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const visibleProjects = useMemo(
     () => (activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter)),
@@ -34,9 +36,10 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
       </div>
       <div className="grid gap-5 md:grid-cols-2">
         {visibleProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <ProjectCard key={project.id} project={project} onViewDetails={setActiveProject} />
         ))}
       </div>
+      <ProjectDetailModal project={activeProject} onClose={() => setActiveProject(null)} />
     </>
   );
 }

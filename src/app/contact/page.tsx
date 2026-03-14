@@ -30,8 +30,8 @@ export default function ContactPage() {
           <div className="mt-2 flex flex-col gap-1 text-sm">
             <a href={profile.github} target="_blank" rel="noreferrer" className="text-sky-700 dark:text-sky-300">GitHub</a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer" className="text-sky-700 dark:text-sky-300">LinkedIn</a>
-            <span className="text-slate-500">{profile.leetcode}</span>
-            <span className="text-slate-500">{profile.twitter}</span>
+            <span className="text-slate-400">LeetCode coming soon</span>
+            <span className="text-slate-400">Twitter/X coming soon</span>
           </div>
         </div>
       </div>

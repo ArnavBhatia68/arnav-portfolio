@@ -14,7 +14,7 @@ export default function ProjectsPage() {
       <SectionHeader
         eyebrow="Projects"
         title="Portfolio of engineered outcomes"
-        description="Each project card prioritizes live demo links first, then source code. Missing links are clearly marked as TODO placeholders."
+        description="Use filters to explore categories. Click any card to open a full project detail view with impact metrics and implementation highlights."
       />
       <ProjectsGrid projects={projects} />
     </div>

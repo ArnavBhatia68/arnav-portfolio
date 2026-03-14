@@ -3,7 +3,7 @@ export const navItems = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Experience", href: "/experience" },
-  { label: "Awards", href: "/awards" },
+  { label: "Certificates", href: "/certificates" },
   { label: "Resume", href: "/resume" },
   { label: "Leadership", href: "/leadership" },
   { label: "Contact", href: "/contact" },
