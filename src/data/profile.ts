@@ -21,7 +21,7 @@ export const heroStats = [
   { label: "Students Supported", value: "2000+" },
   { label: "Workforce Scenarios Modeled", value: "50+" },
   { label: "QueueForge Jobs Validated", value: "150+" },
-  { label: "RL Training Throughput", value: "2×" },
+  { label: "Scholarship", value: "New American University Scholar" },
   { label: "Recognition", value: "TA of the Year" },
 ] as const;
 

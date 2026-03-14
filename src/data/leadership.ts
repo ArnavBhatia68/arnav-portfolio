@@ -27,8 +27,8 @@ export const leadershipItems: LeadershipItem[] = [
       "Implemented and managed tailored educational strategies that enhanced student engagement and learning outcomes, contributing to the academic success of participants from diverse backgrounds.",
     ],
     referenceLabel: "Point of Contact",
-    referenceName: "Available upon request",
-    referenceEmail: "reference-coming-soon@example.com",
+    referenceName: "Cindy Barragan Romero",
+    referenceEmail: "Cynthia.B.Romero@asu.edu",
   },
   {
     id: "aramark",
@@ -42,8 +42,8 @@ export const leadershipItems: LeadershipItem[] = [
       "Spearheaded successful marketing campaigns to promote and sell meal plans, resulting in a substantial increase in plan sign-ups and student engagement.",
     ],
     referenceLabel: "Point of Contact",
-    referenceName: "Available upon request",
-    referenceEmail: "reference-coming-soon@example.com",
+    referenceName: "Emerson Peck",
+    referenceEmail: "Peck-Emerson@aramark.com",
   },
   {
     id: "rotary",

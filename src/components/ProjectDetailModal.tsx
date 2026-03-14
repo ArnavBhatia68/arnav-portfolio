@@ -41,26 +41,30 @@ export default function ProjectDetailModal({ project, onClose }: { project: Proj
           ))}
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          <a
-            href={project.liveUrl ?? "#"}
-            target="_blank"
-            rel="noreferrer"
-            aria-disabled={!project.liveUrl}
-            className={`rounded-xl px-4 py-2 text-sm font-semibold ${project.liveUrl ? "bg-sky-600 text-white hover:bg-sky-500" : "cursor-not-allowed border border-dashed border-slate-300 text-slate-400 dark:border-slate-700"}`}
-          >
-            Live Demo
-          </a>
-          <a
-            href={project.githubUrl ?? "#"}
-            target="_blank"
-            rel="noreferrer"
-            aria-disabled={!project.githubUrl}
-            className={`rounded-xl px-4 py-2 text-sm font-semibold ${project.githubUrl ? "border border-slate-300 text-slate-700 hover:border-sky-400 hover:text-sky-700 dark:border-slate-700 dark:text-slate-200" : "cursor-not-allowed border border-dashed border-slate-300 text-slate-400 dark:border-slate-700"}`}
-          >
-            GitHub
-          </a>
-        </div>
+        {project.primaryAction || project.githubUrl ? (
+          <div className="mt-6 flex flex-wrap gap-2">
+            {project.primaryAction ? (
+              <a
+                href={project.primaryAction.url}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-500"
+              >
+                {project.primaryAction.label}
+              </a>
+            ) : null}
+            {project.githubUrl ? (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:border-sky-400 hover:text-sky-700 dark:border-slate-700 dark:text-slate-200"
+              >
+                GitHub
+              </a>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );

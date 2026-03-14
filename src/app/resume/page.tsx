@@ -53,6 +53,7 @@ export default function ResumePage() {
         <ResourceButton href={profile.resumePath} label="View Resume" />
         <ResourceButton href={profile.resumePath} label="Download Resume" download />
         <ResourceButton href={profile.transcriptPath} label="View Transcript" />
+        <ResourceButton href={profile.transcriptPath} label="Download Transcript" download />
       </div>
 
       {resumeAvailable ? (

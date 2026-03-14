@@ -5,24 +5,6 @@ type Props = {
   onViewDetails: (project: Project) => void;
 };
 
-function LinkAction({ href, label }: { href?: string; label: string }) {
-  if (!href) {
-    return <span className="rounded-lg border border-dashed border-slate-300 px-3 py-1 text-xs text-slate-400 dark:border-slate-700">{label} soon</span>;
-  }
-
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="rounded-lg border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:border-sky-400 hover:text-sky-700 dark:border-slate-700 dark:text-slate-200"
-      onClick={(event) => event.stopPropagation()}
-    >
-      {label}
-    </a>
-  );
-}
-
 export default function ProjectCard({ project, onViewDetails }: Props) {
   return (
     <article
@@ -67,8 +49,28 @@ export default function ProjectCard({ project, onViewDetails }: Props) {
         >
           View Details
         </button>
-        <LinkAction href={project.liveUrl} label="Live Demo" />
-        <LinkAction href={project.githubUrl} label="GitHub" />
+        {project.primaryAction ? (
+          <a
+            href={project.primaryAction.url}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:border-sky-400 hover:text-sky-700 dark:border-slate-700 dark:text-slate-200"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {project.primaryAction.label}
+          </a>
+        ) : null}
+        {project.githubUrl ? (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 transition hover:border-sky-400 hover:text-sky-700 dark:border-slate-700 dark:text-slate-200"
+            onClick={(event) => event.stopPropagation()}
+          >
+            GitHub
+          </a>
+        ) : null}
       </div>
     </article>
   );

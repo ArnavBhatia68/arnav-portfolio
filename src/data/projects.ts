@@ -1,5 +1,10 @@
 export type ProjectCategory = "AI/ML" | "Full-Stack" | "Research";
 
+export type ProjectAction = {
+  label: string;
+  url: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -9,7 +14,7 @@ export type Project = {
   bullets: string[];
   tags: string[];
   metric: string;
-  liveUrl?: string;
+  primaryAction?: ProjectAction;
   githubUrl?: string;
   featured?: boolean;
 };
@@ -29,6 +34,10 @@ export const projects: Project[] = [
     ],
     tags: ["Next.js", "FastAPI", "PostgreSQL", "D3.js", "AWS"],
     metric: "50+ workforce scenarios modeled with 95% CI",
+    primaryAction: {
+      label: "Live Demo",
+      url: "https://apmac-ai-tool-for-sales-productivit-one.vercel.app/",
+    },
     featured: true,
   },
   {
@@ -45,6 +54,11 @@ export const projects: Project[] = [
     ],
     tags: ["Next.js", "TypeScript", "FastAPI", "Redis", "PostgreSQL", "Railway", "Vercel", "Tailwind CSS", "React Query", "Zustand", "shadcn/ui"],
     metric: "150+ jobs validated, 97% under 500 ms",
+    primaryAction: {
+      label: "Live Demo",
+      url: "https://queue-forge-temp.vercel.app/",
+    },
+    githubUrl: "https://github.com/ArnavBhatia68/QueueForge-temp",
     featured: true,
   },
   {
@@ -61,6 +75,10 @@ export const projects: Project[] = [
     ],
     tags: ["Python", "MuJoCo", "MuJoCo Warp", "Reinforcement Learning"],
     metric: "~2× training throughput, convergence under 4 hours",
+    primaryAction: {
+      label: "IRIS Lab",
+      url: "https://irislab.tech/",
+    },
     featured: true,
   },
   {
