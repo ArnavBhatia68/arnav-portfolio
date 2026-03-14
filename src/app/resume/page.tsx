@@ -28,8 +28,6 @@ function ResourceButton({ href, label, download }: { href: string; label: string
 }
 
 export default function ResumePage() {
-  const resumeAvailable = !profile.resumePath.includes("TODO");
-
   return (
     <div className="space-y-8">
       <SectionHeader eyebrow="Resume" title="Resume & Transcript" description="View and download actions are wired to asset paths and gracefully handle pending files." />
@@ -55,14 +53,6 @@ export default function ResumePage() {
         <ResourceButton href={profile.transcriptPath} label="View Transcript" />
         <ResourceButton href={profile.transcriptPath} label="Download Transcript" download />
       </div>
-
-      {resumeAvailable ? (
-        <iframe title="Resume" src={profile.resumePath} className="h-[70vh] w-full rounded-2xl border border-slate-200 bg-white dark:border-slate-800" />
-      ) : (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
-          Resume viewer will appear here once the final PDF asset is added.
-        </div>
-      )}
     </div>
   );
 }
