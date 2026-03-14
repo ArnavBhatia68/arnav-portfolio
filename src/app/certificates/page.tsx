@@ -15,7 +15,7 @@ export default function CertificatesPage() {
   return (
     <div className="space-y-12">
       <section>
-        <SectionHeader eyebrow="Certificates" title="Dean’s List and award records" description="Gallery supports opening previews and downloading as assets become available." />
+        <SectionHeader eyebrow="Certificates" title="Dean’s List and award records" description="Browse academic honors and recognition through a certificate gallery with preview and download access." />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {deansList.map((cert) => (
             <CertificateGalleryItem key={cert.id} cert={cert} />

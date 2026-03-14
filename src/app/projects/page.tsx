@@ -14,7 +14,7 @@ export default function ProjectsPage() {
       <SectionHeader
         eyebrow="Projects"
         title="Portfolio of engineered outcomes"
-        description="Use filters to explore categories. Click any card to open a full project detail view with impact metrics and implementation highlights."
+        description="Explore selected work across full-stack systems, applied AI, and research engineering. Open any project to view architecture, impact, and implementation details."
       />
       <ProjectsGrid projects={projects} />
     </div>

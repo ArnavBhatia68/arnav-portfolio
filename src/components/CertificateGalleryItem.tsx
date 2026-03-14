@@ -1,7 +1,8 @@
 import type { Certificate } from "@/data/certificates";
 
 export default function CertificateGalleryItem({ cert }: { cert: Certificate }) {
-  const available = Boolean(cert.filePath);
+  const hasFile = Boolean(cert.filePath);
+  const hasExternal = Boolean(cert.externalUrl);
 
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
@@ -9,7 +10,7 @@ export default function CertificateGalleryItem({ cert }: { cert: Certificate }) 
       <h3 className="mt-1 text-base font-semibold text-slate-900 dark:text-white">{cert.title}</h3>
       <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{cert.period}</p>
       <div className="mt-4 flex flex-wrap gap-2 text-xs">
-        {available ? (
+        {hasFile ? (
           <>
             <a href={cert.filePath} target="_blank" rel="noreferrer" className="rounded-lg border border-slate-300 px-3 py-1 font-medium text-slate-700 dark:border-slate-700 dark:text-slate-200">
               Open Preview
@@ -18,9 +19,17 @@ export default function CertificateGalleryItem({ cert }: { cert: Certificate }) 
               Download
             </a>
           </>
-        ) : (
-          <span className="rounded-lg border border-dashed border-slate-300 px-3 py-1 text-slate-400 dark:border-slate-700">Asset coming soon</span>
-        )}
+        ) : null}
+        {!hasFile && hasExternal ? (
+          <a
+            href={cert.externalUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-lg border border-slate-300 px-3 py-1 font-medium text-slate-700 dark:border-slate-700 dark:text-slate-200"
+          >
+            {cert.externalLabel ?? "Learn More"}
+          </a>
+        ) : null}
       </div>
     </article>
   );

@@ -30,7 +30,7 @@ function ResourceButton({ href, label, download }: { href: string; label: string
 export default function ResumePage() {
   return (
     <div className="space-y-8">
-      <SectionHeader eyebrow="Resume" title="Resume & Transcript" description="View and download actions are wired to asset paths and gracefully handle pending files." />
+      <SectionHeader eyebrow="Resume" title="Resume & Transcript" description="Access resume and transcript materials through dedicated view and download actions." />
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">

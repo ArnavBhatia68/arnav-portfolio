@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <div className="space-y-10">
-      <SectionHeader eyebrow="Experience" title="Detailed professional and academic experience" description="Full role-by-role details with references and support-document placeholders for future verification assets." />
+      <SectionHeader eyebrow="Experience" title="Detailed professional and academic experience" description="Selected experience across industry, research, and teaching, with detailed responsibilities, outcomes, and supporting references where applicable." />
 
       {experiences.map((item) => (
         <article key={item.id} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
