@@ -7,13 +7,35 @@ import ProjectDetailModal from "./ProjectDetailModal";
 
 const filters: Array<ProjectCategory | "All"> = ["All", "Full-Stack", "AI/ML", "Research"];
 
+function projectKey(project: Project) {
+  const titleKey = project.title.trim().toLowerCase();
+  const orgKey = (project.organization ?? "").trim().toLowerCase();
+  return `${titleKey}::${orgKey}`;
+}
+
 export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
+  const dedupedProjects = useMemo(() => {
+    const seenIds = new Set<string>();
+    const seenContentKeys = new Set<string>();
+
+    return projects.filter((project) => {
+      const key = projectKey(project);
+      if (seenIds.has(project.id) || seenContentKeys.has(key)) return false;
+      seenIds.add(project.id);
+      seenContentKeys.add(key);
+      return true;
+    });
+  }, [projects]);
+
   const visibleProjects = useMemo(
-    () => (activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter)),
-    [activeFilter, projects],
+    () =>
+      activeFilter === "All"
+        ? dedupedProjects
+        : dedupedProjects.filter((project) => project.category === activeFilter),
+    [activeFilter, dedupedProjects],
   );
 
   return (

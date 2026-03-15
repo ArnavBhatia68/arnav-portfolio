@@ -5,14 +5,24 @@ import type { Project } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectDetailModal from "./ProjectDetailModal";
 
+function projectKey(project: Project) {
+  const titleKey = project.title.trim().toLowerCase();
+  const orgKey = (project.organization ?? "").trim().toLowerCase();
+  return `${titleKey}::${orgKey}`;
+}
+
 export default function FeaturedProjectsSnapshot({ projects }: { projects: Project[] }) {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const uniqueProjects = useMemo(() => {
-    const seen = new Set<string>();
+    const seenIds = new Set<string>();
+    const seenContentKeys = new Set<string>();
+
     return projects.filter((project) => {
-      if (seen.has(project.id)) return false;
-      seen.add(project.id);
+      const key = projectKey(project);
+      if (seenIds.has(project.id) || seenContentKeys.has(key)) return false;
+      seenIds.add(project.id);
+      seenContentKeys.add(key);
       return true;
     });
   }, [projects]);
