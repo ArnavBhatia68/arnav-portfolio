@@ -25,11 +25,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
         <NavBar />
-        <main className="mx-auto w-full max-w-6xl px-4 py-10">{children}</main>
-        <footer className="border-t border-slate-200 px-4 py-8 text-sm text-slate-600 dark:border-slate-800 dark:text-slate-400">
-          <div className="mx-auto flex max-w-6xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <main className="mx-auto w-full max-w-6xl px-4 py-12">{children}</main>
+        <footer className="border-t border-slate-200 bg-gradient-to-r from-white to-cyan-50/40 px-4 py-8 text-sm text-slate-600 dark:border-slate-800 dark:from-slate-950 dark:to-slate-950 dark:text-slate-400">
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
-            <p>{profile.opportunityCta}</p>
+            <p className="flex items-center gap-2">
+              <span>✦</span>
+              <span>{profile.opportunityCta}</span>
+            </p>
           </div>
         </footer>
       </body>
