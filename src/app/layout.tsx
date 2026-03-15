@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import { profile } from "@/data/profile";
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Arnav Bhatia — Portfolio",
-  description: "CS @ ASU. I build clean, fast web apps and ML features.",
-  openGraph: {
-    title: "Arnav Bhatia — Portfolio",
-    description: "CS @ ASU. I build clean, fast web apps and ML features."
+  title: {
+    default: site.title,
+    template: `%s | ${profile.name}`,
   },
-  metadataBase: new URL("https://example.com")
+  description: site.description,
+  metadataBase: new URL(site.url),
+  openGraph: {
+    title: site.title,
+    description: site.description,
+    url: site.url,
+    siteName: site.title,
+    type: "website",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
         <NavBar />
-        <main className="max-w-4xl mx-auto px-4 py-10">{children}</main>
-        <footer className="max-w-4xl mx-auto px-4 py-10 text-sm text-gray-500">
-          © {new Date().getFullYear()} Arnav Bhatia
+        <main className="mx-auto w-full max-w-6xl px-4 py-12">{children}</main>
+        <footer className="border-t border-slate-200 bg-gradient-to-r from-white to-cyan-50/40 px-4 py-8 text-sm text-slate-600 dark:border-slate-800 dark:from-slate-950 dark:to-slate-950 dark:text-slate-400">
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+            <p className="flex items-center gap-2">
+              <span>✦</span>
+              <span>{profile.opportunityCta}</span>
+            </p>
+          </div>
         </footer>
       </body>
     </html>
