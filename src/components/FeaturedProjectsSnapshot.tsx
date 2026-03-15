@@ -5,7 +5,6 @@ import type { Project } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectDetailModal from "./ProjectDetailModal";
 
-// Keep dedupe by both id and normalized content key to stay resilient after merge-conflict resolutions.
 function projectKey(project: Project) {
   const titleKey = project.title.trim().toLowerCase();
   const orgKey = (project.organization ?? "").trim().toLowerCase();
