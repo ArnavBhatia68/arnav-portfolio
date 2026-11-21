@@ -3,8 +3,12 @@ export type SupportingDocument = {
   fileUrl?: string;
 };
 
+export type ExperienceKind = "industry" | "research" | "teaching";
+
 export type ExperienceItem = {
   id: string;
+  /** Drives the colour of the bar in the experience timeline. */
+  kind: ExperienceKind;
   title: string;
   organization: string;
   role: string;
@@ -22,6 +26,7 @@ export type ExperienceItem = {
 export const experiences: ExperienceItem[] = [
   {
     id: "miran-informatics",
+    kind: "industry",
     title: "Software Engineer Intern",
     organization: "Miran Informatics Pvt Ltd (B2B SaaS consultancy, 50+ enterprise clients)",
     role: "Software Engineer Intern",
@@ -40,6 +45,7 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: "iris-lab",
+    kind: "research",
     title: "Undergraduate Researcher",
     organization: "IRIS Lab, Arizona State University",
     role: "Undergraduate Researcher",
@@ -56,6 +62,7 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: "asu-ta",
+    kind: "teaching",
     title: "Undergraduate Teaching Assistant",
     organization: "Arizona State University",
     role: "Undergraduate Teaching Assistant",
@@ -72,6 +79,7 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: "apmac-consulting",
+    kind: "industry",
     title: "Intern (Capstone Project)",
     organization: "APMAC Consulting",
     role: "Intern (Capstone Project)",
@@ -88,6 +96,7 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: "asu-grader",
+    kind: "teaching",
     title: "Grader (Calculus I–III, Linear Algebra)",
     organization: "Arizona State University",
     role: "Grader (Calculus I–III, Linear Algebra)",
@@ -104,6 +113,7 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: "asu-instructional-aide",
+    kind: "teaching",
     title: "Instructional Aide (College Algebra, College Mathematics)",
     organization: "Arizona State University",
     role: "Instructional Aide (College Algebra, College Mathematics)",
@@ -120,6 +130,7 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: "sas-technologies",
+    kind: "industry",
     title: "Software Engineer Intern",
     organization: "SAS Technologies Mohali",
     role: "Software Engineer Intern",

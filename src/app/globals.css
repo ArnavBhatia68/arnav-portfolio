@@ -1,16 +1,420 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ tokens */
+
+:root {
+  --paper: #f1eee6;
+  --card: #f7f5ef;
+  --ink: #121211;
+  --ink-soft: #3a3934;
+  --muted: #6b675e;
+  --faint: #a49f93;
+  --line: #d9d4c7;
+  --line-strong: #bab4a5;
+  --signal: #e8492a;
+  --signal-ink: #c23a1e;
+  --on-signal: #fff8f2;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
+  --header-h: 64px;
+
+  color-scheme: light;
 }
 
-body {
-  background-image: radial-gradient(circle at top, rgba(34, 211, 238, 0.05), transparent 35%);
+.dark {
+  --paper: #0c0c0b;
+  --card: #141412;
+  --ink: #eeebe3;
+  --ink-soft: #c9c5bb;
+  --muted: #8f8a7f;
+  --faint: #57534c;
+  --line: #262522;
+  --line-strong: #3b3a36;
+  --signal: #ff5f3a;
+  --signal-ink: #ff7a59;
+  --on-signal: #140a06;
+
+  color-scheme: dark;
 }
 
-::selection {
-  background: #38bdf8;
-  color: #0f172a;
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-on-signal: var(--on-signal);
+
+  --ease-out-expo: var(--ease-out);
+}
+
+/* -------------------------------------------------------------------- base */
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 24px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--paper);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--on-signal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Printed-paper grain. Static image, no blend modes, so it costs nothing on scroll. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.dark body::after {
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* --------------------------------------------------------------- utilities */
+
+@utility shell {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+/* Small uppercase mono label used for indices, captions and metadata. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@utility display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+}
+
+@utility hairline {
+  border-color: var(--line);
+}
+
+/* Underline that draws in from the left. */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.6s var(--ease-out);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* Underline that is present and retracts/redraws on hover. */
+@utility link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size 0.6s var(--ease-out);
+  &:hover {
+    background-position: 0 100%;
+    animation: link-redraw 0.7s var(--ease-out);
+  }
+}
+
+@keyframes link-redraw {
+  0% {
+    background-size: 100% 1px;
+    background-position: 100% 100%;
+  }
+  45% {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+  46% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-size: 100% 1px;
+    background-position: 0 100%;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ motion */
+
+/* Content is only hidden when JS is present to reveal it again. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 1s var(--ease-out),
+    transform 1.1s var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Lines of display type that rise out of a mask. */
+.js [data-rise] {
+  display: inline-block;
+  transform: translate3d(0, 105%, 0);
+  transition: transform 1.2s var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+
+.js .is-in [data-rise],
+.js [data-rise].is-in {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-rise] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero entrance: pure CSS so the headline never waits on hydration. */
+@keyframes hero-rise {
+  from {
+    transform: translate3d(0, 104%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  display: inline-block;
+  animation: hero-rise 1.35s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.hero-fade {
+  animation: hero-fade 1.2s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-fade {
+    animation: none;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate(6px, -7px) rotate(3deg);
+  }
+}
+
+/* Live "process running" dot. */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.pulse-dot {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--signal);
+  flex: none;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--signal);
+  animation: pulse-ring 2s var(--ease-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot::after {
+    animation: none;
+  }
+}
+
+/* Animated flow along diagram edges. */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.edge-flow {
+  stroke-dasharray: 3 9;
+  animation: dash-flow 1.1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-flow {
+    animation: none;
+  }
+}
+
+/* Hatched fill used for "teaching" bars. */
+.hatch {
+  background-image: repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 5px);
+}
+
+/* Slow rotation for the Dean's List seals. */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.seal-ring {
+  transform-origin: 50% 50%;
+  animation: spin 40s linear infinite;
+}
+
+.group:hover .seal-ring {
+  animation-duration: 8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal-ring {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------- theme view transition */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* -------------------------------------------------------------- dialog */
+
+dialog.palette::backdrop {
+  background: color-mix(in oklab, var(--paper) 55%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+dialog.palette[open] {
+  animation: palette-in 0.35s var(--ease-out);
+}
+
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0) scale(0.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.palette[open] {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------- skip link */
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 16px;
 }

@@ -1,17 +1,19 @@
-export const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Experience", href: "/experience" },
-  { label: "Certificates", href: "/certificates" },
-  { label: "Resume", href: "/resume" },
-  { label: "Leadership", href: "/leadership" },
-  { label: "Contact", href: "/contact" },
+export const sections = [
+  { id: "about", label: "About", index: "01" },
+  { id: "work", label: "Work", index: "02" },
+  { id: "experience", label: "Experience", index: "03" },
+  { id: "recognition", label: "Recognition", index: "04" },
+  { id: "leadership", label: "Leadership", index: "05" },
+  { id: "toolkit", label: "Toolkit", index: "06" },
+  { id: "contact", label: "Contact", index: "07" },
 ] as const;
 
+/** The subset shown in the top bar; everything is reachable from ⌘K. */
+export const navSections = ["about", "work", "experience", "recognition", "contact"] as const;
+
 export const site = {
-  url: "https://arnav-portfolio-eight.vercel.app/",
-  title: "Arnav Bhatia | Software Engineer Portfolio",
+  url: "https://arnavbhatia-portfolio.vercel.app",
+  title: "Arnav Bhatia — Software Engineer",
   description:
-    "Computer Science @ ASU | Full-Stack Software Engineer focused on scalable systems, AI-powered apps, and reliable product engineering.",
+    "Arnav Bhatia builds reliable full-stack products and distributed backends, and researches learning-based control for cooperative quadrotors. Computer Science @ Arizona State University.",
 };
